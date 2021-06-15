@@ -1,4 +1,5 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
 import {useState} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
@@ -22,24 +23,26 @@ const Address = (props) => {
         <div className="container">
             <form onSubmit={submitAddress}>
                 <div className="form-group address">
-                    <input value={address} name='address' onChange={e => setAddress(e.target.value)} className="form-control" placeholder="Enter Address"/>
+                    <input value={address} name='address' onChange={e => setAddress(e.target.value)} className="form-control" placeholder="Enter Address" required/>
                 </div>
                 <div className="form-group city">
-                    <input value={city} name='city' onChange={e => setCity(e.target.value)} className="form-control" placeholder="Enter City"/>
+                    <input value={city} name='city' onChange={e => setCity(e.target.value)} className="form-control" placeholder="Enter City" required/>
                 </div>
                 <div className="form-group pincode">
-                    <input value={pincode} name='pincode' onChange={e => setPincode(e.target.value)} className="form-control" placeholder="Enter Pin Code"/>
+                    <input value={pincode} name='pincode' onChange={e => setPincode(e.target.value)} className="form-control" placeholder="Enter Pin Code" required/>
                 </div>
                 <div className="form-group phone">
-                    <input value={phone} name='phone' onChange={e => setPhone(e.target.value)} className="form-control" placeholder="Enter Phone"/>
-                </div>
+                    <input value={phone} name='phone' onChange={e => setPhone(e.target.value)} className="form-control" placeholder="Enter Phone" required/>
+                </div> 
+                
                 <button className="btn btn-primary" style={{float: "right"}}>
-                        <span>
+                Place Order
+                <span style={{marginLeft:'5px'}}>
                             <FontAwesomeIcon icon="arrow-right"/>
                         </span>
-                    &nbsp;&nbsp;&nbsp;Place Order
                 </button>
             </form>
+          
         </div>
     )
 }

@@ -39,6 +39,7 @@ export const addCartMiddleware = (data) => {
                     data: res.data.data
                 }
             })
+            window.location.reload();
         }, err => {})
     }
 }
@@ -54,8 +55,9 @@ export const emptyCartMiddleware = () => {
                 type: 'EMPTY_CART',
                 payload : {
                     data: res.data
-                }
+                }      
             })
+            window.location.reload();
         }, err => {})
     }
 }
@@ -73,6 +75,7 @@ export const removeOneCakeFromCartMiddleware = (cakeId) => {
                     data: res.data
                 }
             })
+            window.location.reload();
         }, err => {})
     }
 }
@@ -90,6 +93,7 @@ export const removeCakeFromCartMiddleware = (cakeId) => {
                     data: res.data
                 }
             })
+            window.location.reload();
         }, err => {})
     }
 }

@@ -39,9 +39,11 @@ let CakeDetails = (props) => {
     return (
         <div className="container-fluid" style={{marginTop: "100px"}}>
             <div className="row">
-                {
-                    <Cake data={cakes} page="details"/>
-                }
+                <div className="card col-md-4" >
+                <img src={cakes.image} />
+               
+
+                </div>
                 <div className="card col-md-8" style={{width: '18rem'}}>
                     <h1>{cakes.name}</h1>
                     <h6>{cakes.description}</h6>
@@ -75,16 +77,7 @@ let CakeDetails = (props) => {
                     </div>
                 </div>
             </div>
-            <h2 style={{marginTop:"30px"}}>Similar Products</h2>
-            <div className="row">
-                {
-                    relatedCakes.map((each, index) => {
-                        return (
-                            <Cake data={each} key={index} page="details"/>
-                        )
-                    })
-                }
-            </div>
+         
             <Footer />
         </div>
     )

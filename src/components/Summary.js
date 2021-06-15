@@ -52,9 +52,10 @@ const Summary = (props) => {
                 }
             </div>
             <div>
-                <span style={{float: "left"}}>Total Price: Rs. {totalPrice} /-</span>
+                <h5 style={{textAlign: "center",fontWeight:'bolder',paddingTop:'20px'}}>Total Price: Rs. {totalPrice} /-</h5>
                 <button className="btn btn-primary" style={{float: "right"}} onClick={activeNextUrl}>
-                <span>
+                Proceed
+                <span style={{marginLeft:'5px'}}>
                     <FontAwesomeIcon icon="arrow-right"/>
                 </span>
                 </button>

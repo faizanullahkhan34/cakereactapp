@@ -1,4 +1,4 @@
-import {Link, Route} from "react-router-dom";
+import {Link, Route,Redirect} from "react-router-dom";
 import Summary from "./Summary";
 import Address from "./Address";
 import Confirm from "./Confirm";
@@ -44,36 +44,31 @@ let Checkout = (props) => {
     }*/
 
     return (
-        <div className="container" style={{marginTop: "100px"}}>
-            <h1>Checkout</h1>
-            <div className="row">
-                <ul className="nav nav-tabs" style={{width: '100%'}}>
-                    <li className="nav-item" style={{width: '50%'}}>
-                        <Link className={"nav-link " + (disableAddressLink ? "active" : "")} aria-current="page" to={'/checkout'}>Order Summary</Link>
-                    </li>
-                    <li className="nav-item" style={{width: '50%'}}>
-                        {
+        <div>
+        <div className="row" style={{marginTop:'100px'}}>
+
+        <div className="col-4">
+        <ul style={{listStyle:'none',display:'block',marginTop:'50px'}}>
+      <li style={{fontSize:'30px'}}> <Link className={"nav-link " + (disableAddressLink ? "active" : "")} aria-current="page" to={'/Checkout'}>Order Summary</Link> </li>
+      <li style={{fontSize:'30px'}}> 
+      {
                             !disableAddressLink
-                            ? <Link className={"nav-link " + (disablePaymentLink ? "active" : "")} to={'/checkout/address'}>Address Details</Link>
-                                : <Link className="nav-link disabled" to={'/checkout/address'} tabIndex="-1" aria-disabled="true">Address Details</Link>
+                            ? <Link className={"nav-link " + (disablePaymentLink ? "active" : "")} to={'/Checkout/Address'}>Address Details</Link>
+                                : <Link className="nav-link disabled" to={'/Checkout/Address'} tabIndex="-1" aria-disabled="true">Address Details</Link>
                         }
-                    </li>
-                    {/*<li className="nav-item" style={{width: '33%'}}>
-                        {
-                            !disablePaymentLink
-                                ? <Link className="nav-link active" to={'/checkout/confirm'}>Payment</Link>
-                                : <Link className="nav-link disabled" to={'/checkout/confirm'} tabIndex="-1" aria-disabled="true">Payment</Link>
-                        }
-                    </li>*/}
-                </ul>
-                <div className="card" style={{width: '100%'}}>
-                    <div className="card-body">
-                        <Route exact path="/checkout"><Summary disableAddressLink={disableAddressLink} onChange={handleAddressLink} /></Route>
+
+      </li>
+        </ul>    
+        </div> 
+
+        <div className="col-8">
+
+        <Route exact path="/checkout"><Summary disableAddressLink={disableAddressLink} onChange={handleAddressLink} /></Route>
                         <Route exact path="/checkout/address"><Address disablePaymentLink={disablePaymentLink} onChange={handlePaymentLink} onSubmit={handleAddressSubmit} /></Route>
-                        {/*<Route exact path="/checkout/confirm"><Confirm data={data} onSubmit={placeOrder} /></Route>*/}
-                    </div>
-                </div>
-            </div>
+  
+        </div>     
+              
+        </div> 
         </div>
     )
 }

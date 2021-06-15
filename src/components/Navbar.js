@@ -75,7 +75,7 @@ const Navbar = (props) => {
                 {props.isLoggedIn && <a onClick={logout} className="my-2 my-sm-0 ml-sm-2" style={{color:'white',textDecoration:'none',cursor:'pointer',marginLeft:'10px'}}>Logout </a>}
                 {!props.isLoggedIn && <Link to="/login" className="my-2 mr-sm-2" style={{color:'white',textDecoration:'none'}}><i className="fa fa-user" aria-hidden="true"></i>Login |</Link>}
                 {!props.isLoggedIn && <Link to="/signup" className="my-2 my-sm-0 ml-sm-2" style={{color:'white',textDecoration:'none'}}> <i className="fa fa-user" aria-hidden="true" style={{marginRight:'10px'}}></i>Register</Link>}
-                {props.isLoggedIn && localStorage.getItem('userData') && ((JSON.parse(localStorage.getItem('userData'))).email ===  (JSON.parse(localStorage.getItem('userData'))).email === 'ashu.lekhi0540@gmail.com') && <Link to="/admin" className="my-2 my-sm-0 ml-sm-2">
+                {props.isLoggedIn && localStorage.getItem('userData') && ((JSON.parse(localStorage.getItem('userData'))).email ===  (JSON.parse(localStorage.getItem('userData'))).email === 'faiz05rajput@gmail.com') && <Link to="/admin" className="my-2 my-sm-0 ml-sm-2">
                     <span title="Admin">
                         <FontAwesomeIcon icon="user"/>
                     </span>

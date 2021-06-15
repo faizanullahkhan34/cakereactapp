@@ -3,7 +3,7 @@ import axios from "axios";
 
 const Orders = () => {
     const [orders, getOrders] = useState([])
-
+    var dateFormat = require("dateformat");
     useEffect(() => {
         axios({
             url: process.env.REACT_APP_API_BASE_URL + '/cakeorders',
@@ -13,23 +13,25 @@ const Orders = () => {
             getOrders(ordersList)
         }, err => {})
     }, [])
-
+    
     return (
         <div className="container" style={{marginTop: "100px"}}>
             <h1>My Orders</h1>
             { orders.length > 0 && <div className="accordion" id="accordionExample">
                 {
                     orders.map((each, index) => {
+                        let orderDate = dateFormat(each.orderdate, "mmm d, yyyy");
+                        let orderTimes = dateFormat(each.orderdate, "h:MM TT");
                         return (
                             <>
                                 <div className="card">
-                                    <div className="card-header" id={"heading"+(index)}>
+                                    <div className="card-header" id={"heading"+(index)} style={{backgroundColor:"LightYellow"}}>
                                         <h2 className="mb-0">
                                             <button className="btn btn-link btn-block text-left collapsed" type="button"
                                                     data-toggle="collapse" data-target={"#collapse"+(index)}
                                                     aria-expanded="true" aria-controls={"collapse"+(index)}>
-                                                Order #: {each.orderid} on {each.orderdate} for {each.name}
-                                            </button>
+                                           <span style={{color:'LightSeaGreen',fontWeight:"bolder",fontFamily:'sans-serif'}}> Order #: {each.orderid} on {orderDate} at {orderTimes} </span>  
+                                            </button> 
                                         </h2>
                                     </div>
 

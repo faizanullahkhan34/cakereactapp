@@ -1,37 +1,66 @@
-import React,{useEffect, useState} from "react";
-import {Link, withRouter} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {connect} from "react-redux";
-import StarRatings from 'react-star-ratings';
+import React, { Component,useState } from 'react'
+import{Link} from 'react-router-dom';
 import ReactPaginate from "react-paginate";
+import "../css/pagination.css";
 
-let Cake = (props) => {
+function Cake(props){
+
     const [offset, setOffset] = useState(0);
-    const [data, setData] = useState([]);
-    const [perPage] = useState(10);
-    const [pageCount, setPageCount] = useState(0)
+    const [perPage] = useState(8);
+    const [pageCount, setPageCount] = useState(0);
+    const  [slice, setSlice] = useState([]);
      
+    const handlePageClick = (e) => {
+       // alert(e.selected)
+        const selectedPage = e.selected;
+        setOffset(selectedPage);
+      };
+
+      React.useEffect(() => {
+          if( props.data.length<8){
+            setSlice(props.data);
+            return;
+          }
+        setSlice(props.data.slice(offset*perPage, perPage*(offset+1)));
+      },[offset, props.data]);
+
+      
+     // console.log("props.data.length",props.data)
         return (
-          <div>
-          <div className="card" style={{width: '28rem',marginLeft:'10px',height:'30em'}}>
-         <Link to={'/cake/'+props.data.cakeid}>
-        <img src={props.data.image} className="card-img-top" alt={props.data.image} style={{height: '20rem'}} /> </Link>
-        <div className="card-body">
-          <h5 className="card-title">{props.data.name}</h5>
-          <p className="card-text"> Rs.{props.data.price}</p>
-          <p>
-            <StarRatings rating={props.data.ratings} starRatedColor="yellow" numberOfStars={5} starDimension="25px" starSpacing="1px" name='rating'/>
-          </p>
           
-        </div>
-              
-      </div>
-      
-      </div>
-      
-        );
-     
-      }
-      
-      export default Cake;
-      
+            <>
+          { props&&props.data&&props.data.length>0?slice.map((key,index)=>{
+                return<div class="col" key={index} className="img-hover-zoom">
+                    <div class="card h-100" >
+                    <Link to={'/cake/'+key.cakeid}><img  src={key.image} style={{height:'250px'}}class="card-img-top" alt="..." /></Link>
+                    <div class="card-body">
+                                <h5 class="card-title">{key.name}</h5>
+                                <p class="card-text">&#8377; {key.price}</p>
+                    </div>
+                    </div>
+                 </div>
+            }):null}
+
+            {props.data&&props.data.length>perPage?
+            <div class="col" style={{display:'block',width:"100%"}}>
+         <center>     <ReactPaginate
+                previousLabel={"prev"}
+                nextLabel={"next"}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={ Math.ceil(props.data.length/perPage)}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                subContainerClassName={"pages pagination"}
+                activeClassName={"active"}
+              />
+              </center>  
+              </div>
+                :null}
+            </>
+        )
+}
+
+export default Cake; 
